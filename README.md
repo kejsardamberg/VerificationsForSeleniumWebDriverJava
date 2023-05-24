@@ -18,6 +18,11 @@ You don't want the test to stop for the slightest difference and report a lot of
 driver.assertVerificationResults();
 ```
 
+### Separate known issues from new ones
+Any test automation that always is red is tedious to maintain. In system testing you sometimes have to live with issues for weeks before they are resolved. Hence, in this framework there is a possibility to register known issues. 
+Known issues are flagged yellow rather than red or green. 
+If a test exeuction only encounters known errors it is marked yellow, while it is marked red if new issues are found - and of course green if no issues are found.
+
 
 ## Getting started
 ### Maven dependency
@@ -95,13 +100,27 @@ exists();
 doesNotExist();
     
 
-#### Specific features
+### Specific features
+#### Set max number of accepted fails for a test
 You may instruct the framework to abort the test if too many fails occur. This could be useful to shorten the execution duration since exceptions from expectations often trigger a lot of wait timeouts in GUI automation, making the test duration take a very long time. E.g;
 ```java
 driver.setMaximumNumberOfAcceptedFails(3);
 ```
 This would abort further test execution for a test if more than three failed verifications are registered.
 
+#### Register known problems
+Known issues are registered by with a regex pattern. The use of regex patterns is due to log results sometimes varying slighly from time to time. The regular expression patterns enables filtering. 
+Known issues are registered like this:
+```java
+driver.addKnownError(".*text of element 'myElement' is .* and not 'Submitted' as expected.*");
+```
+Mulitple known issues may be entered:
+```java
+driver.addKnownErrors(
+    ".*text of element 'submitButton' is .* and not 'Submit' as expected.*",
+    ".*text of element 'myElement' is .* and not 'Submitted' as expected.*",
+    ".*title is .* and not 'Landing page' as expected.*");
+```
 
 ### Working code sample
 ```java
