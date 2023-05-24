@@ -1,4 +1,4 @@
-# VerificationsForSeleniumWebDriver
+# Verifications for Selenium WebDriver
 
 ## What is this?
 This is a library to enable easy verifications in Selenium. It wraps a WebDriver instance and enables verifications of browser states and element states.
