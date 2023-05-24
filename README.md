@@ -11,10 +11,10 @@ This is a library to enable easy verifications in Selenium. It wraps a WebDriver
 ## Getting started
 ### Maven dependency
 Include the following in your pom.xml file:
-'''xml
+```xml
 <dependency>
 </dependency>
-'''
+```
 ### Direct download
 Check releases above. Download binary artifacts and include them in your classpath.
 
@@ -22,7 +22,7 @@ Check releases above. Download binary artifacts and include them in your classpa
 Clone this repository and compile it.
 
 ### Usage
-'''java
+```java
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -56,4 +56,4 @@ public class Tests {
         driver.findVerifiableElement(searchSection).verify().isEnabled();
     }
 }
-'''
+```
