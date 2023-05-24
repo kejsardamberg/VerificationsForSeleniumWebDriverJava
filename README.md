@@ -4,14 +4,19 @@
 This is a library to enable easy verifications in Selenium. It wraps a WebDriver instance and enables verifications of browser states and element states.
 
 ## Key concepts
+
+### Easy access of verification
+You should not have to create your own verifications, so these are premade and readily available.
+
+### Clear and consise log messsages
+You should understand the log and what it says with a glance. 
+
 ### No asserts during test execution, but after.
 As opposed to unit testing GUI based tests take time to execute and it is often tedious to fix small issues creating new builds and wait for them to deploy, install, and start to enable a new test execution opportunity with fixes. 
 You don't want the test to stop for the slightest difference and report a lot of false negatives. Hence, in this framework verifications are not asserts, but written to the log. However, if failed verifications are found these could be asserted by simply running the following command that you may put in your JUnit @After method:
 ```java
 driver.assertVerificationResults();
 ```
-
-### Chained commands to enable multiple verifications
 
 
 ## Getting started
