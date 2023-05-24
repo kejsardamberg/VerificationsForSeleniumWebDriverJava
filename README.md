@@ -41,8 +41,9 @@ driver.verify().textContains(driver.getPageSource(), "Test purpose");
 These commands enable chaining since they return the verification driver:
 ```java
 driver.
-    verify().element(By.id("myId")).exists().
-    verify().element(By.id("myId"))
+    verify().browser().titleEquals("Success").
+    verify().browser().noErrorsInConsole().
+    verify().element(By.id("myId")).exists();
 ```
 
 #### List of implemented browser verifications
