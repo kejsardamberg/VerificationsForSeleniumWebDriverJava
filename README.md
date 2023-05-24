@@ -45,11 +45,57 @@ driver.
     verify().element(By.id("myId"))
 ```
 
-#### List of browser verifications
-driver.verify().browser().noErrorsInConsole();
-driver.verify().browser().noErrorsInConsole();
+#### List of implemented browser verifications
+Selenium controls the browser. This enables us to verify some states of the browser.
 
-#### List of 
+You access the browser verifications by:
+```java
+driver.verify().browser()... //Enables the range of verification methods stated in the examples below:
+```
+noErrorsInConsole();
+alertDoesNotExist();
+alertExist();
+currentPageSourceMatchesRegex(".*mypattern.*");
+currentPageSourceContains("mySpecificString");
+currentURLContains("/importantEndpoint/");
+currentURLEquals("https://damberg.one");
+currentURLMatchesRegex(".*/api/.*/person/.*");
+titleMatchesRegex(".* - Damberg.one");
+titleContains("Damberg.one");
+titleEquals("Landing page - Damberg.one");
+
+#### List of implemented WebElement verifications
+Selenium interacts with web pages by their elements. This enables us to verify some states of the elements.
+
+You access the element verifications by:
+```java
+driver.verify().element(By.Id("myId"))... //Enables the range of verification methods stated in the examples below:
+```
+
+textEquals("Submit");
+textContains("Submitted");
+textMatchesRegex(".*accepted.*");
+elementAttributeExist("outbound-value");
+elementAttributeDoesNotExist("outbound-value");
+isDisplayed();
+isNotDisplayed();
+elementAttributeValueEquals("class", "outbound results");
+elementAttributeValueContains("class", "outbound");
+isDisabled();
+isEnabled();
+isSelected();
+isNotSelected();
+exists();
+doesNotExist();
+    
+
+#### Specific features
+You may instruct the framework to abort the test if too many fails occur. This could be useful to shorten the execution duration since exceptions from expectations often trigger a lot of wait timeouts in GUI automation, making the test duration take a very long time. E.g;
+```java
+driver.setMaximumNumberOfAcceptedFails(3);
+```
+This would abort further test execution for a test if more than three failed verifications are registered.
+
 
 ### Working code sample
 ```java
