@@ -1,7 +1,5 @@
 package com.zingtongroup.verificationsforseleniumwebdriver;
 
-import com.zingtongroup.loggingseleniumwebdriver.LoggingSeleniumWebDriver;
-import com.zingtongroup.loggingseleniumwebdriver.logging.TestFlowLogLevel;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

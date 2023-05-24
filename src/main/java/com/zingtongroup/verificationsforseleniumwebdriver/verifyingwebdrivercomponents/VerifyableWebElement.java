@@ -2,6 +2,7 @@ package com.zingtongroup.verificationsforseleniumwebdriver.verifyingwebdrivercom
 
 import com.zingtongroup.loggingseleniumwebdriver.loggingseleniumcomponents.LoggingWebElement;
 import com.zingtongroup.verificationsforseleniumwebdriver.WebDriverWithVerifications;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 public class VerifyableWebElement extends LoggingWebElement {
@@ -10,6 +11,11 @@ public class VerifyableWebElement extends LoggingWebElement {
 
     public VerifyableWebElement(WebElement webElement, WebDriverWithVerifications driver) {
         super(webElement, driver.loggerList);
+        this.driver = driver;
+    }
+
+    public VerifyableWebElement(By by, WebDriverWithVerifications driver){
+        super(driver.findElement(by), driver.loggerList);
         this.driver = driver;
     }
 
