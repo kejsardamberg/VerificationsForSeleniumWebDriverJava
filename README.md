@@ -67,17 +67,17 @@ You access the browser verifications by:
 ```java
 driver.verify().browser()... //Enables the range of verification methods stated in the examples below:
 ```
-noErrorsInConsole();
-alertDoesNotExist();
-alertExist();
-currentPageSourceMatchesRegex(".*mypattern.*");
-currentPageSourceContains("mySpecificString");
-currentURLContains("/importantEndpoint/");
-currentURLEquals("https://damberg.one");
-currentURLMatchesRegex(".*/api/.*/person/.*");
-titleMatchesRegex(".* - Damberg.one");
-titleContains("Damberg.one");
-titleEquals("Landing page - Damberg.one");
+noErrorsInConsole();  
+alertDoesNotExist();  
+alertExist();  
+currentPageSourceMatchesRegex(".*mypattern.*");  
+currentPageSourceContains("mySpecificString");  
+currentURLContains("/importantEndpoint/");  
+currentURLEquals("https://damberg.one");  
+currentURLMatchesRegex(".*/api/.*/person/.*");  
+titleMatchesRegex(".* - Damberg.one");  
+titleContains("Damberg.one");  
+titleEquals("Landing page - Damberg.one");  
 
 #### List of implemented WebElement verifications
 Selenium interacts with web pages by their elements. This enables us to verify some states of the elements.
@@ -87,21 +87,21 @@ You access the element verifications by:
 driver.verify().element(By.Id("myId"))... //Enables the range of verification methods stated in the examples below:
 ```
 
-textEquals("Submit");
-textContains("Submitted");
-textMatchesRegex(".*accepted.*");
-elementAttributeExist("outbound-value");
-elementAttributeDoesNotExist("outbound-value");
-isDisplayed();
-isNotDisplayed();
-elementAttributeValueEquals("class", "outbound results");
-elementAttributeValueContains("class", "outbound");
-isDisabled();
-isEnabled();
-isSelected();
-isNotSelected();
-exists();
-doesNotExist();
+textEquals("Submit");  
+textContains("Submitted");  
+textMatchesRegex(".*accepted.*");  
+elementAttributeExist("outbound-value");  
+elementAttributeDoesNotExist("outbound-value");  
+isDisplayed();  
+isNotDisplayed();  
+elementAttributeValueEquals("class", "outbound results");  
+elementAttributeValueContains("class", "outbound");  
+isDisabled();  
+isEnabled();  
+isSelected();  
+isNotSelected();  
+exists();  
+doesNotExist();  
     
 
 ### Specific features
