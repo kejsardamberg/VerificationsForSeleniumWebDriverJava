@@ -4,7 +4,7 @@
 
     <groupId>com.github.claremontqualitymanagement.seleniumextensions</groupId>
     <artifactId>VerificationsForSeleniumWebDriver</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1-SNAPSHOT</version>
 
     <name>Verifications for Selenium WebDriver</name>
     <description>Wrapper for any WebDriver instance to easily introduce verifications. Highly extendable.</description>
