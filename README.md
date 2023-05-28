@@ -29,8 +29,12 @@ If a test exeuction only encounters known errors it is marked yellow, while it i
 Include the following in your pom.xml file:
 ```xml
 <dependency>
+    <groupId>com.github.claremontqualitymanagement.seleniumextensions</groupId>
+    <artifactId>VerificationsForSeleniumWebDriver</artifactId>
+    <version>1.0.0</version>
 </dependency>
 ```
+
 ### Direct download
 Check releases above. Download binary artifacts and include them in your classpath.
 
