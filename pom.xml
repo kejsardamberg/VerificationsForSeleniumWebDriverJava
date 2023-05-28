@@ -35,14 +35,14 @@
         <connection>scm:git:git://github.com/kejsardamberg/VerificationsForSeleniumWebDriverJava.git</connection>
         <developerConnection>scm:git://github.com/kejsardamberg/VerificationsForSeleniumWebDriverJava.git</developerConnection>
         <url>https://github.com/kejsardamberg/VerificationsForSeleniumWebDriverJava</url>
-        <tag>com.zingtongroup.loggingseleniumwebdriver.VerificationsForSeleniumWebDriver-1.0.0</tag>
+        <tag>VerificationsForSeleniumWebDriver-1.0.0</tag>
     </scm>
 
     <dependencies>
         <dependency>
-            <groupId>com.github.claremontqualitymanagement.LoggingSeleniumWebDriver</groupId>
+            <groupId>com.github.claremontqualitymanagement.seleniumextensions</groupId>
             <artifactId>LoggingSeleniumWebDriver</artifactId>
-            <version>1.3.1</version>
+            <version>1.3.2</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
