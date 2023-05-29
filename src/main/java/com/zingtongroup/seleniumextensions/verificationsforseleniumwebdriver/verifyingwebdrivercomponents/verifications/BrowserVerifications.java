@@ -1,6 +1,6 @@
-package com.zingtongroup.verificationsforseleniumwebdriver.verifyingwebdrivercomponents.verifications;
+package com.zingtongroup.seleniumextensions.verificationsforseleniumwebdriver.verifyingwebdrivercomponents.verifications;
 
-import com.zingtongroup.verificationsforseleniumwebdriver.WebDriverWithVerifications;
+import com.zingtongroup.seleniumextensions.verificationsforseleniumwebdriver.WebDriverWithVerifications;
 import org.openqa.selenium.logging.LogEntries;
 import org.openqa.selenium.logging.LogEntry;
 

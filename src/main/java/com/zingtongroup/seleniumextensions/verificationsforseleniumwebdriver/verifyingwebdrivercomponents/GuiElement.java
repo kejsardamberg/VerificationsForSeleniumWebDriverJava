@@ -1,4 +1,4 @@
-package com.zingtongroup.verificationsforseleniumwebdriver.verifyingwebdrivercomponents;
+package com.zingtongroup.seleniumextensions.verificationsforseleniumwebdriver.verifyingwebdrivercomponents;
 
 import org.openqa.selenium.WebElement;
 

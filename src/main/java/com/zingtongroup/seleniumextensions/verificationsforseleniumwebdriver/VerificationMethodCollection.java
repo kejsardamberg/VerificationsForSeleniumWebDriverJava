@@ -1,7 +1,7 @@
-package com.zingtongroup.verificationsforseleniumwebdriver;
+package com.zingtongroup.seleniumextensions.verificationsforseleniumwebdriver;
 
-import com.zingtongroup.verificationsforseleniumwebdriver.verifyingwebdrivercomponents.WebElementWithVerifications;
-import com.zingtongroup.verificationsforseleniumwebdriver.verifyingwebdrivercomponents.verifications.BrowserVerifications;
+import com.zingtongroup.seleniumextensions.verificationsforseleniumwebdriver.verifyingwebdrivercomponents.WebElementWithVerifications;
+import com.zingtongroup.seleniumextensions.verificationsforseleniumwebdriver.verifyingwebdrivercomponents.verifications.BrowserVerifications;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 

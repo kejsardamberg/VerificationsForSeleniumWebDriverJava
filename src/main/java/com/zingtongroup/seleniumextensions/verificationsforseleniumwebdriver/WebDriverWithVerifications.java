@@ -1,9 +1,9 @@
-package com.zingtongroup.verificationsforseleniumwebdriver;
+package com.zingtongroup.seleniumextensions.verificationsforseleniumwebdriver;
 
 import com.zingtongroup.loggingseleniumwebdriver.LoggingSeleniumWebDriver;
 import com.zingtongroup.loggingseleniumwebdriver.logging.TestFlowLogLevel;
-import com.zingtongroup.verificationsforseleniumwebdriver.verifyingwebdrivercomponents.VerifyableWebElement;
-import dev.failsafe.internal.util.Assert;
+import com.zingtongroup.seleniumextensions.verificationsforseleniumwebdriver.verifyingwebdrivercomponents.VerifyableWebElement;
+import org.junit.Assert;
 import org.junit.Assume;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -95,8 +95,8 @@ public class WebDriverWithVerifications extends LoggingSeleniumWebDriver {
     }
 
     public void assertVerificationResults(){
-        Assert.isTrue(highestSeverity.getValue() < FAILED_VERIFICATION.getValue()  && numberOfProblems == 0, "Failed verifications encountered.");
-        Assert.isTrue(highestSeverity.getValue() < VERIFICATION_PROBLEM.getValue() && numberOfProblems == 0, "Could not perform all verifications.");
+        Assert.assertTrue("Failed verifications encountered.", highestSeverity.getValue() < FAILED_VERIFICATION.getValue()  && numberOfProblems == 0);
+        Assert.assertTrue("Could not perform all verifications.", highestSeverity.getValue() < VERIFICATION_PROBLEM.getValue() && numberOfProblems == 0);
         Assume.assumeTrue("Only deviations marked as known encountered.", knownErrorsEncountered == 0);
     }
 

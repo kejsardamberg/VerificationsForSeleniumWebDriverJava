@@ -1,5 +1,6 @@
 package com.zingtongroup.verificationsforseleniumwebdriver;
 
+import com.zingtongroup.seleniumextensions.verificationsforseleniumwebdriver.WebDriverWithVerifications;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;

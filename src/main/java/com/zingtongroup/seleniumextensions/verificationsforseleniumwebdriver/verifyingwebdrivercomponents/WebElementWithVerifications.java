@@ -1,12 +1,11 @@
-package com.zingtongroup.verificationsforseleniumwebdriver.verifyingwebdrivercomponents;
+package com.zingtongroup.seleniumextensions.verificationsforseleniumwebdriver.verifyingwebdrivercomponents;
 
 import com.zingtongroup.loggingseleniumwebdriver.loggingseleniumcomponents.LoggingWebElement;
-import com.zingtongroup.verificationsforseleniumwebdriver.WebDriverWithVerifications;
+import com.zingtongroup.seleniumextensions.verificationsforseleniumwebdriver.WebDriverWithVerifications;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
