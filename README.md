@@ -139,10 +139,10 @@ verifyDoesNotExist();
 verifyIsFullyWithinViewEvenIfHidden();  
 verifyIsFullyWithinView();  
 verifyIsFullyOutOfView();  
-verifyIsAtLeastPartlyOutOfView();
-verifyIsAtLeastPartlyWithinView();
-verifyIsToTheLeftOf();
-verifyIsToTheRightOf();
+verifyIsAtLeastPartlyOutOfView();  
+verifyIsAtLeastPartlyWithinView();  
+verifyIsToTheLeftOf();  
+verifyIsToTheRightOf();  
 
 #### Generic verifications
 From the verify() object you may verify just about anything from these methods:
