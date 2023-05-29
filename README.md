@@ -31,7 +31,7 @@ Include the following in your pom.xml file:
 <dependency>
     <groupId>com.github.claremontqualitymanagement.seleniumextensions</groupId>
     <artifactId>VerificationsForSeleniumWebDriver</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
 </dependency>
 ```
 
@@ -86,6 +86,11 @@ You access the element verifications by:
 ```java
 driver.verify().element(By.Id("myId"))... //Enables the range of verification methods stated in the examples below:
 ```
+or by using:
+```java
+driver.findElement(By.Id("myId")).verify()... //Enables the range of verification methods stated in the examples below:
+```
+
 
 textEquals("Submit");  
 textContains("Submitted");  
@@ -102,7 +107,11 @@ isSelected();
 isNotSelected();  
 exists();  
 doesNotExist();  
-    
+isFullyWithinViewEvenIfHidden();  
+isFullyWithinView();  
+isFullyOutOfView();  
+isAtLeastPartlyOutOfView();
+isAtLeastPartlyWithinView();
 
 ### Specific features
 #### Set max number of accepted fails for a test
