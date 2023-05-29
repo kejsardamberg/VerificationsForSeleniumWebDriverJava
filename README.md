@@ -31,7 +31,7 @@ Include the following in your pom.xml file:
 <dependency>
     <groupId>com.github.claremontqualitymanagement.seleniumextensions</groupId>
     <artifactId>VerificationsForSeleniumWebDriver</artifactId>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
 </dependency>
 ```
 
@@ -92,26 +92,37 @@ driver.findElement(By.Id("myId")).verify()... //Enables the range of verificatio
 ```
 
 
-textEquals("Submit");  
-textContains("Submitted");  
-textMatchesRegex(".*accepted.*");  
-elementAttributeExist("outbound-value");  
-elementAttributeDoesNotExist("outbound-value");  
-isDisplayed();  
-isNotDisplayed();  
-elementAttributeValueEquals("class", "outbound results");  
-elementAttributeValueContains("class", "outbound");  
-isDisabled();  
-isEnabled();  
-isSelected();  
-isNotSelected();  
-exists();  
-doesNotExist();  
-isFullyWithinViewEvenIfHidden();  
-isFullyWithinView();  
-isFullyOutOfView();  
-isAtLeastPartlyOutOfView();
-isAtLeastPartlyWithinView();
+verifyTextEquals("Submit");  
+verifyTextContains("Submitted");  
+verifyTextMatchesRegex(".*accepted.*");  
+verifyElementAttributeExist("outbound-value");  
+verifyElementAttributeDoesNotExist("outbound-value");  
+verifyIsDisplayed();  
+verifyIsNotDisplayed();  
+verifyElementAttributeValueEquals("class", "outbound results");  
+verifyElementAttributeValueContains("class", "outbound");  
+verifyIsDisabled();  
+verifyIsEnabled();  
+verifyIsSelected();  
+verifyIsNotSelected();  
+verifyExists();  
+verifyDoesNotExist();  
+verifyIsFullyWithinViewEvenIfHidden();  
+verifyIsFullyWithinView();  
+verifyIsFullyOutOfView();  
+verifyIsAtLeastPartlyOutOfView();
+verifyIsAtLeastPartlyWithinView();
+verifyIsToTheLeftOf();
+verifyIsToTheRightOf();
+
+#### Generic verifications
+From the verify() object you may verify just about anything from these methods:
+
+ifFalse();  
+isTrue();  
+isEqual();  
+textEquals();  
+textContains();  
 
 ### Specific features
 #### Set max number of accepted fails for a test
@@ -155,8 +166,8 @@ public class Tests {
     @After
     public void teardown(){
         if(driver != null){
-            driver.assertVerificationResults();
             driver.quit();
+            driver.assertVerificationResults();
         }
     }
 
@@ -166,8 +177,8 @@ public class Tests {
     public void constructor(){
         driver.get("https://damberg.one");
         driver.verify().browser().titleContains("Damberg.one");
-        driver.verify().element(searchSection).textEquals("Problem");
-        driver.findVerifiableElement(searchSection).verify().isEnabled();
+        driver.verify().element(searchSection).verifyTextEquals("Problem");
+        driver.findElement(searchSection).verifyIsEnabled();
     }
 }
 ```
