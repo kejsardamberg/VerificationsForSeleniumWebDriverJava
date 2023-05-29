@@ -1,7 +1,34 @@
 # Verifications for Selenium WebDriver
 
 ## What is this?
-This is a library to enable easy verifications in Selenium. It wraps a WebDriver instance and enables verifications of browser states and element states.
+This is a library to enable easy verifications in Selenium. It wraps a WebDriver instance and enables verifications of browser states and element states putting results to log and enables asserts to JUnit output format for build pipelines to catch.
+
+A sample test like this both output to log and throws failed assert after the test:
+```java
+WebDriverWithVerifications driver = new WebDriverWithVerifications(new ChromeDriver());
+driver.get("https://damberg.one");
+driver.verify().browser().titleContains("Damberg.one");
+driver.verify().element(searchSection).verifyTextEquals("Problem");
+driver.findElement(searchSection).verify().verifyIsEnabled();
+driver.findElement(searchSection).verify().verifyIsAtLeastPartlyWithinView();
+driver.verify().isTrue("Hello".equals("world"));
+driver.quit();
+driver.assertVerificationResults();
+```
+
+Log output:
+```console
+2023-05-29 13:43:01 INFO                : Starting driver of type org.openqa.selenium.chrome.ChromeDriver.
+2023-05-29 13:43:01 EXECUTION_STEP      : Navigating to 'https://damberg.one'.
+2023-05-29 13:43:01 PASSED_VERIFICATION : Browser title was 'Landing page - Damberg.one' thus containing 'Damberg.one' as expected.
+2023-05-29 13:43:01 FAILED_VERIFICATION : Element text was 'Free text search: Deep search: Search', not the expected 'Problem'.
+2023-05-29 13:43:01 PASSED_VERIFICATION : Element 'section element ' was enabled, as expected.
+2023-05-29 13:43:02 PASSED_VERIFICATION : Element 'section element ' was within view, as expected.
+2023-05-29 13:43:02 FAILED_VERIFICATION : Expression evaluated to false. True was expected.
+2023-05-29 13:43:02 INFO                : Quitting web driver instance.
+java.lang.AssertionError: Failed verifications encountered.
+```
+
 
 ## Key concepts
 
@@ -23,6 +50,8 @@ Any test automation that always is red is tedious to maintain. In system testing
 Known issues are flagged yellow rather than red or green. 
 If a test exeuction only encounters known errors it is marked yellow, while it is marked red if new issues are found - and of course green if no issues are found.
 
+### Possibility to abort problematic tests automatically
+If test contain too more failures than a threshold count they may be aborted automatically. 
 
 ## Getting started
 ### Maven dependency
