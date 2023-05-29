@@ -371,11 +371,6 @@ public class WebElementWithVerifications implements GuiElement {
     }
 
     @Override
-    public WebElement runtimeObject() {
-        return this.element;
-    }
-
-    @Override
     public int left() {
         return element.getLocation().getX();
     }
@@ -393,20 +388,5 @@ public class WebElementWithVerifications implements GuiElement {
     @Override
     public int bottom() {
         return element.getLocation().getY() + element.getRect().getHeight();
-    }
-
-    @Override
-    public List<GuiElement> childElements() {
-        List<WebElement> children = element.findElements(By.xpath("/*"));
-        List<GuiElement> guiChildren = new ArrayList<>();
-        for(WebElement e : children){
-            guiChildren.add(new WebElementWithVerifications(e, driver));
-        }
-        return guiChildren;
-    }
-
-    @Override
-    public GuiElement parent() {
-        return new WebElementWithVerifications(element.findElement(By.xpath("/..")), driver);
     }
 }
