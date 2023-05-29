@@ -4,7 +4,7 @@
 
     <groupId>com.github.claremontqualitymanagement.seleniumextensions</groupId>
     <artifactId>VerificationsForSeleniumWebDriver</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.1.0-SNAPSHOT</version>
 
     <name>Verifications for Selenium WebDriver</name>
     <description>Wrapper for any WebDriver instance to easily introduce verifications. Highly extendable.</description>
@@ -35,7 +35,7 @@
         <connection>scm:git:git://github.com/kejsardamberg/VerificationsForSeleniumWebDriverJava.git</connection>
         <developerConnection>scm:git://github.com/kejsardamberg/VerificationsForSeleniumWebDriverJava.git</developerConnection>
         <url>https://github.com/kejsardamberg/VerificationsForSeleniumWebDriverJava</url>
-        <tag>VerificationsForSeleniumWebDriver-1.0.0</tag>
+        <tag>VerificationsForSeleniumWebDriver-1.1.0</tag>
     </scm>
 
     <dependencies>

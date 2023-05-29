@@ -100,7 +100,8 @@ public class WebDriverWithVerifications extends LoggingSeleniumWebDriver {
         Assume.assumeTrue("Only deviations marked as known encountered.", knownErrorsEncountered == 0);
     }
 
-    public VerifyableWebElement findVerifiableElement(By by){
+    @Override
+    public VerifyableWebElement findElement(By by){
         return new VerifyableWebElement(super.findElement(by), this);
     }
 

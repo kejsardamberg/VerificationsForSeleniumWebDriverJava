@@ -2,13 +2,15 @@ package com.zingtongroup.verificationsforseleniumwebdriver.verifyingwebdrivercom
 
 import com.zingtongroup.loggingseleniumwebdriver.loggingseleniumcomponents.LoggingWebElement;
 import com.zingtongroup.verificationsforseleniumwebdriver.WebDriverWithVerifications;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
-public class WebElementWithVerifications {
+public class WebElementWithVerifications implements GuiElement {
 
     private final WebDriverWithVerifications driver;
     private final LoggingWebElement element;
@@ -141,7 +143,6 @@ public class WebElementWithVerifications {
         }
 
         return driver;
-
     }
 
     public WebDriverWithVerifications isNotDisplayed(){
@@ -289,5 +290,124 @@ public class WebElementWithVerifications {
         return driver;
     }
 
+    private boolean withinViewPort(boolean partialDisplayAccepted, boolean acceptHiddenElements)
+    {
+        JavascriptExecutor js;
+        try{
+            js = (JavascriptExecutor)driver.originalWebDriver;
+        }catch (Exception e){
+            driver.logVerificationProblem("Cannot execute javascripts with this WebDriver instance.");
+            return false;
+        }
+        driver.pauseLogging();
+        if (!acceptHiddenElements && !element.isDisplayed()) return false;
+        boolean success;
+        try
+        {
+            Integer viewPortTop = Integer.valueOf(js.executeScript("return window.pageYOffset;").toString());
+            Integer viewPortLeft = Integer.valueOf(js.executeScript("return window.pageXOffset;").toString());
+            Integer viewPortWidth = Integer.valueOf(js.executeScript("return Math.max(document.documentElement.clientWidth, window.innerWidth || 0);").toString());
+            Integer viewPortHeight = Integer.valueOf(js.executeScript("return Math.max(document.documentElement.clientHeight, window.innerHeight || 0);").toString());
 
+            success = !(partialDisplayAccepted && viewPortTop > this.bottom());
+            if (!partialDisplayAccepted && viewPortTop > top()) success = false;
+
+            if (partialDisplayAccepted && viewPortLeft > right()) success = false;
+            if (!partialDisplayAccepted && viewPortLeft > left()) success = false;
+
+            if (partialDisplayAccepted && viewPortLeft + viewPortWidth < left()) success = false;
+            if (!partialDisplayAccepted && viewPortLeft + viewPortWidth < right()) success = false;
+
+            if (partialDisplayAccepted && viewPortTop + viewPortHeight < bottom()) success = false;
+            if (!partialDisplayAccepted && viewPortTop + viewPortHeight < top()) success = false;
+        }
+        catch (Exception e)
+        {
+            driver.resumeLogging();
+            return false;
+        }
+        driver.resumeLogging();
+        return success;
+    }
+
+    public WebDriverWithVerifications isFullyWithinViewEvenIfHidden()
+    {
+        return isWithinViewBase(false, true, true);
+    }
+
+    public WebDriverWithVerifications isFullyWithinView()
+    {
+        return isWithinViewBase(false, true, false);
+    }
+
+    public WebDriverWithVerifications isFullyOutOfView()
+    {
+        return isWithinViewBase(false, false, false);
+    }
+
+    public WebDriverWithVerifications isAtLeastPartlyOutOfView()
+    {
+        return isWithinViewBase(true, false, false);
+    }
+
+    public WebDriverWithVerifications isAtLeastPartlyWithinView()
+    {
+        return isWithinViewBase(true, true, false);
+    }
+
+    private WebDriverWithVerifications isWithinViewBase(boolean partialDisplayAccepted, boolean expectedToBeWithinViewForSuccess, boolean acceptHiddenElements)
+    {
+        boolean success = withinViewPort(partialDisplayAccepted, acceptHiddenElements) == expectedToBeWithinViewForSuccess;
+
+        if (success)
+        {
+            driver.logVerificationPassed("Element '" + this.element.elementString + "' was " + String.valueOf(expectedToBeWithinViewForSuccess).toLowerCase().replace("false", "not ").replace("true", "") + "within view, as expected.");
+        }
+        else
+        {
+            driver.logVerificationFailed("Element '" + element.elementString + "' was unexpectedly " + String.valueOf(expectedToBeWithinViewForSuccess).toLowerCase().replace("false", "").replace("true", "not ") + "within view.");
+        }
+
+        return this.driver;
+    }
+
+    @Override
+    public WebElement runtimeObject() {
+        return this.element;
+    }
+
+    @Override
+    public int left() {
+        return element.getLocation().getX();
+    }
+
+    @Override
+    public int right() {
+        return element.getLocation().getX() + element.getRect().getWidth();
+    }
+
+    @Override
+    public int top() {
+        return element.getLocation().getY();
+    }
+
+    @Override
+    public int bottom() {
+        return element.getLocation().getY() + element.getRect().getHeight();
+    }
+
+    @Override
+    public List<GuiElement> childElements() {
+        List<WebElement> children = element.findElements(By.xpath("/*"));
+        List<GuiElement> guiChildren = new ArrayList<>();
+        for(WebElement e : children){
+            guiChildren.add(new WebElementWithVerifications(e, driver));
+        }
+        return guiChildren;
+    }
+
+    @Override
+    public GuiElement parent() {
+        return new WebElementWithVerifications(element.findElement(By.xpath("/..")), driver);
+    }
 }

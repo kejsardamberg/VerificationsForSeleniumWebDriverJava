@@ -32,6 +32,7 @@ public class Tests {
         driver.get("https://damberg.one");
         driver.verify().browser().titleContains("Damberg.one");
 //        driver.verify().element(searchSection).textEquals("Problem");
-        driver.findVerifiableElement(searchSection).verify().isEnabled();
+        driver.findElement(searchSection).verify().isEnabled();
+        driver.findElement(searchSection).verify().isAtLeastPartlyWithinView();
     }
 }
