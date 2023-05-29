@@ -1,7 +1,7 @@
 package com.zingtongroup.seleniumextensions.verificationsforseleniumwebdriver;
 
-import com.zingtongroup.loggingseleniumwebdriver.LoggingSeleniumWebDriver;
-import com.zingtongroup.loggingseleniumwebdriver.logging.TestFlowLogLevel;
+import com.zingtongroup.seleniumextensions.loggingseleniumwebdriver.LoggingSeleniumWebDriver;
+import com.zingtongroup.seleniumextensions.loggingseleniumwebdriver.logging.TestFlowLogLevel;
 import com.zingtongroup.seleniumextensions.verificationsforseleniumwebdriver.verifyingwebdrivercomponents.VerifyableWebElement;
 import org.junit.Assert;
 import org.junit.Assume;
@@ -12,7 +12,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.zingtongroup.loggingseleniumwebdriver.logging.TestFlowLogLevel.*;
+import static com.zingtongroup.seleniumextensions.loggingseleniumwebdriver.logging.TestFlowLogLevel.FAILED_VERIFICATION;
+import static com.zingtongroup.seleniumextensions.loggingseleniumwebdriver.logging.TestFlowLogLevel.VERIFICATION_PROBLEM;
+
 
 public class WebDriverWithVerifications extends LoggingSeleniumWebDriver {
 
@@ -67,8 +69,8 @@ public class WebDriverWithVerifications extends LoggingSeleniumWebDriver {
                 numberOfProblems++;
             }
         }
-        if(highestSeverity.getValue() < TestFlowLogLevel.FAILED_VERIFICATION.getValue()) {
-            highestSeverity = TestFlowLogLevel.FAILED_VERIFICATION;
+        if(highestSeverity.getValue() < FAILED_VERIFICATION.getValue()) {
+            highestSeverity = FAILED_VERIFICATION;
         }
         if(numberOfProblems >= maximumNumberOfAcceptedFails){
             logInfo("Maximum number of accepted failed log posts (" + maximumNumberOfAcceptedFails + ") reached. Aborting test execution.");

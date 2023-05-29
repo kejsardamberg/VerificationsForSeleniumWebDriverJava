@@ -1,13 +1,11 @@
 package com.zingtongroup.seleniumextensions.verificationsforseleniumwebdriver.verifyingwebdrivercomponents;
 
-import com.zingtongroup.loggingseleniumwebdriver.loggingseleniumcomponents.LoggingWebElement;
+import com.zingtongroup.seleniumextensions.loggingseleniumwebdriver.loggingseleniumcomponents.LoggingWebElement;
 import com.zingtongroup.seleniumextensions.verificationsforseleniumwebdriver.WebDriverWithVerifications;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class WebElementWithVerifications implements GuiElement {
 
@@ -19,7 +17,7 @@ public class WebElementWithVerifications implements GuiElement {
         this.driver = driver;
     }
 
-    public WebDriverWithVerifications textEquals(String text){
+    public WebDriverWithVerifications verifyTextEquals(String text){
         if(text == null) {
             driver.logVerificationProblem("Could not verify text of element " + element.elementString + ". Expected text was null.");
             return driver;
@@ -43,7 +41,7 @@ public class WebElementWithVerifications implements GuiElement {
         return driver;
     }
 
-    public WebDriverWithVerifications textContains(String text){
+    public WebDriverWithVerifications verifyTextContains(String text){
         if(text == null) {
             driver.logVerificationProblem("Could not verify text of element " + element.elementString + ". Expected text was null.");
             return driver;
@@ -68,7 +66,7 @@ public class WebElementWithVerifications implements GuiElement {
         return driver;
     }
 
-    public WebDriverWithVerifications textMatchesRegex(String pattern){
+    public WebDriverWithVerifications verifyTextMatchesRegex(String pattern){
         if(pattern == null) {
             driver.logVerificationProblem("Could not verify text of element " + element.elementString + ". Expected pattern was null.");
             return driver;
@@ -93,7 +91,7 @@ public class WebElementWithVerifications implements GuiElement {
         return driver;
     }
 
-    public WebDriverWithVerifications elementAttributeExist(String attributeName){
+    public WebDriverWithVerifications verifyElementAttributeExist(String attributeName){
         if(element == null){
             driver.logVerificationProblem("Could not verify text of element since it could not be identified.");
             return driver;
@@ -110,7 +108,7 @@ public class WebElementWithVerifications implements GuiElement {
         return driver;
     }
 
-    public WebDriverWithVerifications elementAttributeDoesNotExist(String attributeName){
+    public WebDriverWithVerifications verifyElementAttributeDoesNotExist(String attributeName){
         if(element == null){
             driver.logVerificationProblem("Could not verify text of element since it could not be identified.");
             return driver;
@@ -127,7 +125,7 @@ public class WebElementWithVerifications implements GuiElement {
         return driver;
     }
 
-    public WebDriverWithVerifications isDisplayed(){
+    public WebDriverWithVerifications verifyIsDisplayed(){
         if(element == null){
             driver.logVerificationProblem("Could not verify text of element since it could not be identified.");
             return driver;
@@ -144,7 +142,7 @@ public class WebElementWithVerifications implements GuiElement {
         return driver;
     }
 
-    public WebDriverWithVerifications isNotDisplayed(){
+    public WebDriverWithVerifications verifyIsNotDisplayed(){
         if(element == null){
             driver.logVerificationProblem("Could not verify text of element since it could not be identified.");
             return driver;
@@ -161,7 +159,7 @@ public class WebElementWithVerifications implements GuiElement {
         return driver;
     }
 
-    public WebDriverWithVerifications elementAttributeValueEquals(String attributeName, String attributeValue){
+    public WebDriverWithVerifications verifyElementAttributeValueEquals(String attributeName, String attributeValue){
         if(element == null){
             driver.logVerificationProblem("Could not verify text of element since it could not be identified.");
             return driver;
@@ -183,7 +181,7 @@ public class WebElementWithVerifications implements GuiElement {
         return driver;
     }
 
-    public WebDriverWithVerifications elementAttributeValueContains(String attributeName, String attributeValue){
+    public WebDriverWithVerifications verifyElementAttributeValueContains(String attributeName, String attributeValue){
         if(element == null){
             driver.logVerificationProblem("Could not verify text of element since it could not be identified.");
             return driver;
@@ -203,7 +201,7 @@ public class WebElementWithVerifications implements GuiElement {
         return driver;
     }
 
-    public WebDriverWithVerifications isDisabled(){
+    public WebDriverWithVerifications verifyIsDisabled(){
         if(element == null){
             driver.logVerificationProblem("Could not verify text of element since it could not be identified.");
             return driver;
@@ -220,7 +218,7 @@ public class WebElementWithVerifications implements GuiElement {
         return driver;
     }
 
-    public WebDriverWithVerifications isEnabled(){
+    public WebDriverWithVerifications verifyIsEnabled(){
         if(element == null){
             driver.logVerificationProblem("Could not verify text of element since it could not be identified.");
             return driver;
@@ -237,7 +235,7 @@ public class WebElementWithVerifications implements GuiElement {
         return driver;
     }
 
-    public WebDriverWithVerifications isSelected(){
+    public WebDriverWithVerifications verifyIsSelected(){
         if(element == null){
             driver.logVerificationProblem("Could not verify text of element since it could not be identified.");
             return driver;
@@ -254,7 +252,7 @@ public class WebElementWithVerifications implements GuiElement {
         return driver;
     }
 
-    public WebDriverWithVerifications isNotSelected(){
+    public WebDriverWithVerifications verifyIsNotSelected(){
         if(element == null){
             driver.logVerificationProblem("Could not verify text of element '" + element.elementString + "' since it could not be identified.");
             return driver;
@@ -271,7 +269,7 @@ public class WebElementWithVerifications implements GuiElement {
         return driver;
     }
 
-    public WebDriverWithVerifications exists(){
+    public WebDriverWithVerifications verifyExists(){
         if(element != null){
             driver.logVerificationPassed("Element '" + element.elementString + "' existed as expected.");
         } else {
@@ -280,7 +278,7 @@ public class WebElementWithVerifications implements GuiElement {
         return driver;
     }
 
-    public WebDriverWithVerifications doesNotExist(){
+    public WebDriverWithVerifications verifyDoesNotExist(){
         if(element == null){
             driver.logVerificationPassed("Element did not exist, as expected.");
         } else {
@@ -329,27 +327,27 @@ public class WebElementWithVerifications implements GuiElement {
         return success;
     }
 
-    public WebDriverWithVerifications isFullyWithinViewEvenIfHidden()
+    public WebDriverWithVerifications verifyIsFullyWithinViewEvenIfHidden()
     {
         return isWithinViewBase(false, true, true);
     }
 
-    public WebDriverWithVerifications isFullyWithinView()
+    public WebDriverWithVerifications verifyIsFullyWithinView()
     {
         return isWithinViewBase(false, true, false);
     }
 
-    public WebDriverWithVerifications isFullyOutOfView()
+    public WebDriverWithVerifications verifyIsFullyOutOfView()
     {
         return isWithinViewBase(false, false, false);
     }
 
-    public WebDriverWithVerifications isAtLeastPartlyOutOfView()
+    public WebDriverWithVerifications verifyIsAtLeastPartlyOutOfView()
     {
         return isWithinViewBase(true, false, false);
     }
 
-    public WebDriverWithVerifications isAtLeastPartlyWithinView()
+    public WebDriverWithVerifications verifyIsAtLeastPartlyWithinView()
     {
         return isWithinViewBase(true, true, false);
     }
@@ -367,6 +365,74 @@ public class WebElementWithVerifications implements GuiElement {
             driver.logVerificationFailed("Element '" + element.elementString + "' was unexpectedly " + String.valueOf(expectedToBeWithinViewForSuccess).toLowerCase().replace("false", "").replace("true", "not ") + "within view.");
         }
 
+        return this.driver;
+    }
+
+    public WebDriverWithVerifications verifyIsToTheRightOf(By referenceElement)
+    {
+        if (referenceElement == null )
+        {
+            driver.logVerificationProblem("Could not verify element position of null elements.");
+            return this.driver;
+        }
+
+        VerifyableWebElement leftElement = driver.findElement(referenceElement);
+        if(leftElement == null){
+            driver.logVerificationProblem("Could not verify element position since element could not be identified.");
+            return this.driver;
+        }
+        Point leftElementLocation = leftElement.getLocation();
+        Point rightElementLocation = element.getLocation();
+
+        if (leftElementLocation == null || rightElementLocation == null)
+        {
+            driver.logVerificationProblem("Could not verify element position of elements '" + element.elementString + "' and '" + referenceElement + "'. Some elements could not be identified.");
+            return this.driver;
+        }
+        int leftElementWidth = leftElement.getRect().width;
+
+        if (leftElementLocation.getX() + leftElementWidth < rightElementLocation.getX())
+        {
+            driver.logVerificationPassed("Verified that element '" + element.elementString + "' was to the right of element '" + referenceElement + "'.");
+        }
+        else
+        {
+            driver.logVerificationFailed("The element '" + element.elementString + "' was not to the right of element '" + referenceElement + "'.");
+        }
+        return this.driver;
+    }
+
+    public WebDriverWithVerifications verifyIsToTheLeftOf(By referenceElement)
+    {
+        if (referenceElement == null )
+        {
+            driver.logVerificationProblem("Could not verify element position of null elements.");
+            return this.driver;
+        }
+
+        VerifyableWebElement rightElement = driver.findElement(referenceElement);
+        if(rightElement == null){
+            driver.logVerificationProblem("Could not verify element position since element could not be identified.");
+            return this.driver;
+        }
+        Point rightElementLocation = rightElement.getLocation();
+        Point leftElementLocation = element.getLocation();
+
+        if (rightElementLocation == null || leftElementLocation == null)
+        {
+            driver.logVerificationProblem("Could not verify element position of elements '" + element.elementString + "' and '" + referenceElement + "'. Some elements could not be identified.");
+            return this.driver;
+        }
+        int rightElementWidth = rightElement.getRect().width;
+
+        if (rightElementLocation.getX() > leftElementLocation.getX() + element.getRect().getWidth())
+        {
+            driver.logVerificationPassed("Verified that element '" + element.elementString + "' was to the left of element '" + referenceElement + "'.");
+        }
+        else
+        {
+            driver.logVerificationFailed("The element '" + element.elementString + "' was not to the left of element '" + referenceElement + "'.");
+        }
         return this.driver;
     }
 

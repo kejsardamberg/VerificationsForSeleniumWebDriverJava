@@ -20,8 +20,8 @@ public class Tests {
     @After
     public void teardown(){
         if(driver != null){
-            driver.assertVerificationResults();
             driver.quit();
+            driver.assertVerificationResults();
         }
     }
 
@@ -33,7 +33,8 @@ public class Tests {
         driver.get("https://damberg.one");
         driver.verify().browser().titleContains("Damberg.one");
 //        driver.verify().element(searchSection).textEquals("Problem");
-        driver.findElement(searchSection).verify().isEnabled();
-        driver.findElement(searchSection).verify().isAtLeastPartlyWithinView();
+        driver.findElement(searchSection).verify().verifyIsEnabled();
+        driver.findElement(searchSection).verify().verifyIsAtLeastPartlyWithinView();
+        driver.verify().isTrue(false);
     }
 }
